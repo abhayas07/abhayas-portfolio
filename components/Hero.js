@@ -1,4 +1,5 @@
 import { profile } from "@/data/portfolio";
+import SplineModel from "./SplineModel";
 
 const pills = profile.stackLine.split("·").map((s) => s.trim()).filter(Boolean);
 
@@ -25,18 +26,11 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* profile panel (replaces the 3D scene) */}
-      <div className="mt-14 flex h-[515px] w-full items-center overflow-hidden rounded-3xl border bg-background xl:mt-0 xl:w-[690px] xl:min-w-[690px]">
-        <pre className="w-full overflow-x-auto p-8 font-mono text-sm leading-7 text-slate-300 no-scrollbar">
-{`{
-  "name": "${profile.name}",
-  "role": "${profile.title}",
-  "stack": [${pills.map((p) => `"${p}"`).join(", ")}],
-  "location": "${profile.location}",
-  "status": "open to junior roles"
-}`}
-        </pre>
+      {/* 3D Model scene */}
+      <div className="mt-14 flex h-[515px] w-full items-center justify-center overflow-hidden rounded-3xl border bg-background xl:mt-0 xl:w-[690px] xl:min-w-[690px]">
+        <SplineModel />
       </div>
     </section>
   );
 }
+
