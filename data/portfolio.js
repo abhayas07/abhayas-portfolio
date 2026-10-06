@@ -11,7 +11,7 @@ export const profile = {
   email: "abhayabh422@gmail.com",
   phone: "+91 7994387539",
   linkedin: "https://www.linkedin.com/in/abhay-a-s-18456131a",
-  github: "", // add your GitHub URL here, e.g. "https://github.com/yourname"
+  github: "https://github.com/abhayas07",
   resume: "", // optional: put a PDF in /public and set "/resume.pdf"
 };
 
