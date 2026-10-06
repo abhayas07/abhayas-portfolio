@@ -1,6 +1,6 @@
 # Abhay A S — Full-Stack Developer Portfolio
 
-A responsive portfolio for a full-stack Python developer, built with Next.js (App Router) and Tailwind CSS. The hero is styled as a JSON response from a web back end, and the green and yellow palette nods to Django and Python. Dark mode is the default, with a light-mode toggle. No API keys or environment variables are needed.
+A responsive portfolio for a full-stack Python developer, built with Next.js (App Router) and Tailwind CSS. Styled after wendoj/developer-portfolio: dark indigo theme, Clash Grotesk headings, greeting preloader, gradient hero, project carousel and card sections. No API keys or environment variables are needed.
 
 ## Animations
 - Hero headline slides up word by word, then the JSON response types in line by line.

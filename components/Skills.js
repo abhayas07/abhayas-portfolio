@@ -1,74 +1,34 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
-import Section from "./Section";
 import { skills, softSkills } from "@/data/portfolio";
-import { InfiniteMovingCards } from "./ui/InfiniteMovingCards";
-import { CardSpotlight } from "./ui/CardSpotlight";
 
 export default function Skills() {
-  // Collect flat list of all primary skills for the moving marquee
-  const allTechItems = Array.from(new Set(skills.flatMap((g) => g.items)));
-
   return (
-    <Section id="skills" title="Skills">
-      {/* Infinite moving tech banner from reference repo */}
-      <div className="mb-10 -mx-5 sm:-mx-8 overflow-hidden">
-        <InfiniteMovingCards
-          items={allTechItems}
-          direction="left"
-          speed="normal"
-        />
-      </div>
-
-      <dl className="grid gap-6 sm:grid-cols-2">
-        {skills.map((g, idx) => (
-          <motion.div
-            key={g.group}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.08 }}
-          >
-            <CardSpotlight className="h-full p-5 sm:p-6">
-              <dt className="mb-3 flex items-center gap-2 font-semibold text-lg text-ink dark:text-[#E4EFE8]">
-                <span className="h-2 w-2 rounded-full bg-django dark:bg-py-yellow" />
-                {g.group}
-              </dt>
-              <dd className="flex flex-wrap gap-2">
-                {g.items.map((s) => (
-                  <span
-                    key={s}
-                    className="cursor-default rounded-md border border-django/20 bg-white/60 px-3 py-1 text-sm font-medium transition-all duration-200 hover:border-django hover:bg-django-soft/60 hover:scale-105 dark:border-white/15 dark:bg-white/5 dark:text-[#E4EFE8] dark:hover:border-py-yellow/60 dark:hover:bg-white/10"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </dd>
-            </CardSpotlight>
-          </motion.div>
-        ))}
-      </dl>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="mt-8 flex flex-wrap items-center gap-2 rounded-xl border border-django/15 bg-white/40 p-4 dark:border-white/10 dark:bg-white/5 backdrop-blur-sm"
-      >
-        <span className="font-semibold text-sm sm:text-base">Working style:</span>
-        <div className="flex flex-wrap gap-2">
-          {softSkills.map((ss) => (
-            <span
-              key={ss}
-              className="rounded-full bg-django/10 px-3 py-0.5 text-xs font-semibold text-django dark:bg-py-yellow/15 dark:text-py-yellow"
-            >
-              {ss}
-            </span>
+    <section id="skills">
+      <div className="my-24">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="grid items-start gap-1.5 md:grid-cols-2 xl:grid-cols-3"
+        >
+          <div className="flex flex-col py-6 xl:p-6">
+            <h2 className="text-4xl font-medium tracking-tight">
+              What I work with,<br /><span className="text-gradient clash-grotesk tracking-normal">end to end.</span>
+            </h2>
+            <p className="mt-2 tracking-tighter text-secondary-foreground">{softSkills.join(" · ")}</p>
+          </div>
+          {skills.map((g) => (
+            <div key={g.group} className="flex flex-col items-start rounded-md bg-white/5 p-10 shadow-md backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/10">
+              <span className="text-lg tracking-tight text-foreground">{g.group}</span>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {g.items.map((i) => <span key={i} className="pill">{i}</span>)}
+              </div>
+            </div>
           ))}
-        </div>
-      </motion.div>
-    </Section>
+        </motion.div>
+      </div>
+    </section>
   );
 }

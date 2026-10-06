@@ -6,16 +6,12 @@ export const metadata = {
   description: profile.positioning,
 };
 
-// Sets the theme before paint to avoid a flash. Defaults to dark/night.
-const themeScript = `try{var t=localStorage.getItem('theme');if(t!=='light'){document.documentElement.classList.add('dark');document.addEventListener('DOMContentLoaded',function(){if(document.body)document.body.classList.add('night')})}}catch(e){document.documentElement.classList.add('dark')}`;
+export const viewport = { themeColor: "#7B82FE" };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body className="font-sans portfolio-bg">{children}</body>
+    <html lang="en" className="dark">
+      <body>{children}</body>
     </html>
   );
 }

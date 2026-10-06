@@ -1,35 +1,28 @@
-"use client";
-import React from "react";
-import { motion } from "framer-motion";
-import Section from "./Section";
-import { about } from "@/data/portfolio";
-import { CardSpotlight } from "./ui/CardSpotlight";
+import { about, projects, skills, experience } from "@/data/portfolio";
+
+const stats = [
+  { label: "Projects built", value: projects.length },
+  { label: "Internships", value: experience.length },
+  { label: "Skills & tools", value: skills.reduce((n, g) => n + g.items.length, 0) },
+];
 
 export default function About() {
   return (
-    <Section id="about" title="About">
-      <CardSpotlight className="relative p-6 sm:p-10">
-        {/* Subtle decorative crosshairs inspired by the reference repo */}
-        <span className="pointer-events-none absolute -left-2 -top-2 text-xs font-mono text-django/40 dark:text-py-yellow/40">＋</span>
-        <span className="pointer-events-none absolute -right-2 -top-2 text-xs font-mono text-django/40 dark:text-py-yellow/40">＋</span>
-        <span className="pointer-events-none absolute -left-2 -bottom-2 text-xs font-mono text-django/40 dark:text-py-yellow/40">＋</span>
-        <span className="pointer-events-none absolute -right-2 -bottom-2 text-xs font-mono text-django/40 dark:text-py-yellow/40">＋</span>
-
-        <div className="max-w-3xl space-y-5 text-base sm:text-lg leading-relaxed opacity-90">
-          {about.map((paragraph, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="text-ink/90 dark:text-[#E4EFE8]/90"
-            >
-              {paragraph}
-            </motion.p>
+    <section id="about">
+      <div className="my-14 flex max-w-6xl flex-col justify-start space-y-10">
+        <h2 className="py-16 pb-2 text-3xl font-light leading-normal tracking-tighter text-foreground xl:text-[40px]">{about[0]}</h2>
+        {about.slice(1).map((p) => (
+          <p key={p} className="max-w-3xl text-lg tracking-tight text-muted-foreground">{p}</p>
+        ))}
+        <div className="grid grid-cols-3 gap-8">
+          {stats.map((s) => (
+            <div key={s.label} className="flex flex-col items-center text-center xl:items-start xl:text-start">
+              <span className="clash-grotesk text-gradient text-4xl font-semibold tracking-tight xl:text-6xl">{s.value}</span>
+              <span className="tracking-tight text-muted-foreground xl:text-lg">{s.label}</span>
+            </div>
           ))}
         </div>
-      </CardSpotlight>
-    </Section>
+      </div>
+    </section>
   );
 }
